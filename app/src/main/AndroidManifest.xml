@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica_Activities">
         <activity
+            android:name=".imageView"
+            android:exported="true" />
+        <activity
             android:name=".imageDetail"
             android:exported="true" />
         <activity
