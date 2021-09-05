@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     fun more(view: View) {
         startActivity(Intent(this, imageDetail::class.java).apply {
-            putExtra("hola", Image.arrayImages[indexImage])
+            putExtra("imagen", arrayImages[indexImage])
         })
     }
 
