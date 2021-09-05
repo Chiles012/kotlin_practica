@@ -1,5 +1,6 @@
 package com.chiles.practica_activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -19,7 +20,9 @@ class imageDetail : AppCompatActivity() {
 
     var isDoubleClick: Boolean = false
 
-    private val runnable = Runnable { isDoubleClick=false }
+    private val runnable = Runnable {
+        isDoubleClick=false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +59,12 @@ class imageDetail : AppCompatActivity() {
             isDoubleClick = true
             handler.postDelayed(runnable, 500)
         }
+    }
+
+    fun viewImg(view: View) {
+        startActivity(Intent(this, imageView::class.java).apply {
+            putExtra("image", image)
+        })
     }
 
 }

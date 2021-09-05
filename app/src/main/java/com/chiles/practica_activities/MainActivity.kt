@@ -64,4 +64,8 @@ class MainActivity : AppCompatActivity() {
         imageView.setImageResource(arrayImages[indexImage].src!!)
     }
 
+    fun add(view: View) {
+        startActivity(Intent(this, NewImage::class.java))
+    }
+
 }
