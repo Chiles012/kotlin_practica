@@ -13,8 +13,12 @@ class Image(
 
     companion object {
         var arrayImages = arrayOf(
-            Image(R.drawable.star_yellow, "Estrella svg"),
-            Image(R.drawable.star_yellow, "Estrella svg amarilla")
+            Image(R.drawable.ic_codigo, "Codigo"),
+            Image(R.drawable.ic_objetivo, "Codigo objetivo"),
+            Image(R.drawable.ic_programacion, "Mensaje"),
+            Image(R.drawable.idioma, "Idioma"),
+            Image(R.drawable.npl, "npl"),
+            Image(R.drawable.lenguaje, "Lenguaje")
         )
 
         fun addImage(image: Image) : Array<Image> {
