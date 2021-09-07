@@ -21,7 +21,8 @@ class imageDetail : AppCompatActivity() {
     lateinit var handler: Handler
 
     lateinit var image: Image
-    var index: Int = 0
+    lateinit var arrayImages: ArrayImage
+    var index = 0
 
     var isDoubleClick: Boolean = false
     private val IMAGE_PREFERNCES = "MY_IMAGE_PREFERENCES"
@@ -40,6 +41,7 @@ class imageDetail : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(PREF, Context.MODE_PRIVATE)
 
         image = intent.getParcelableExtra("imagen")!!
+        arrayImages = intent.getParcelableExtra("array")!!
         index = intent.getIntExtra("index", 0)
         handler = Handler()
 
@@ -64,9 +66,13 @@ class imageDetail : AppCompatActivity() {
     fun doubleClick(view: View) {
         if ( isDoubleClick ) {
             // TODO: Cambiar el valor a true likeImage
-                image.likeImage = true
+                image.likeImage = !image.likeImage
                 save()
-                imgLike.setImageResource(R.drawable.star_yellow)
+
+                if ( image.likeImage )
+                    imgLike.setImageResource(R.drawable.star_yellow)
+                else
+                    imgLike.setImageResource(R.drawable.star_container)
             isDoubleClick = false
         } else {
             isDoubleClick = true
@@ -75,8 +81,7 @@ class imageDetail : AppCompatActivity() {
     }
 
     fun save() {
-        val arrayImages = ArrayImage()
-        arrayImages.arrayImage[index].likeImage = true
+        arrayImages.arrayImage[index].likeImage = image.likeImage
         sharedPreferences.edit().putString(IMAGE_PREFERNCES, moshi.adapter(ArrayImage::class.java).toJson(arrayImages)).commit()
     }
 

@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     fun more(view: View) {
         startActivity(Intent(this, imageDetail::class.java).apply {
             putExtra("imagen", arrayImages.arrayImage[indexImage])
+            putExtra("array", arrayImages)
             putExtra("index", indexImage)
         })
     }

@@ -18,6 +18,7 @@ class Image(
 }
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 class ArrayImage(
     val arrayImage: Array<Image> = arrayOf(
         Image(R.drawable.ic_codigo, "Codigo", id = 0),
@@ -27,4 +28,6 @@ class ArrayImage(
         Image(R.drawable.npl, "npl", id = 4),
         Image(R.drawable.lenguaje, "Lenguaje", id = 5)
     )
-)
+) : Parcelable {
+
+}
