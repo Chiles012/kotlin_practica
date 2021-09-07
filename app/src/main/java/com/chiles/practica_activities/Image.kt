@@ -2,36 +2,29 @@ package com.chiles.practica_activities
 
 import android.os.Parcelable
 import android.widget.Toast
+import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
+@JsonClass(generateAdapter = true)
 @Parcelize
 class Image(
     var src: Int?,
     var infoImage: String = "Descripcion",
-    var likeImage: Boolean = false
+    var likeImage: Boolean = false,
+    var id: Int
 ) : Parcelable {
 
-    companion object {
-        var arrayImages = arrayOf(
-            Image(R.drawable.ic_codigo, "Codigo"),
-            Image(R.drawable.ic_objetivo, "Codigo objetivo"),
-            Image(R.drawable.ic_programacion, "Mensaje"),
-            Image(R.drawable.idioma, "Idioma"),
-            Image(R.drawable.npl, "npl"),
-            Image(R.drawable.lenguaje, "Lenguaje")
-        )
-
-        fun addImage(image: Image) : Array<Image> {
-            arrayImages = arrayOf(*arrayImages, image)
-
-            return arrayImages
-        }
-
-        fun getInfoImage(index: Int) : String {
-            val image = arrayImages.get(index);
-
-            return image.infoImage
-        }
-    }
 
 }
+
+@JsonClass(generateAdapter = true)
+class ArrayImage(
+    val arrayImage: Array<Image> = arrayOf(
+        Image(R.drawable.ic_codigo, "Codigo", id = 0),
+        Image(R.drawable.ic_objetivo, "Codigo objetivo", id = 1),
+        Image(R.drawable.ic_programacion, "Mensaje", id = 2),
+        Image(R.drawable.idioma, "Idioma", id = 3),
+        Image(R.drawable.npl, "npl", id = 4),
+        Image(R.drawable.lenguaje, "Lenguaje", id = 5)
+    )
+)
