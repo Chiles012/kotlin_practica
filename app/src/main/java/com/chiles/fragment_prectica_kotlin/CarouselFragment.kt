@@ -52,7 +52,11 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
         btnInfo.setOnClickListener {
             val act = activity
             if ( act is MainActivity )
-                act.changeFragment(DetailImageFragment(), picture)
+                act.changeFragment(DetailImageFragment().apply {
+                    arguments = Bundle().apply {
+                        putParcelable("picture", picture)
+                    }
+                })
             else
                 Toast.makeText(context, "Error en abrir otro elemento", Toast.LENGTH_LONG).show()
         }
@@ -71,10 +75,6 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
     fun changePicture() {
         picture = arrayPictures[index]
         imgCarousel.setImageResource(picture.sourceImage)
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
 }

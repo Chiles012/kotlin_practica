@@ -21,11 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun changeFragment(fragment: Fragment, picture: Picture) {
+    fun changeFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-            Bundle().apply {
-                putParcelable("picture", picture)
-            }
             replace(R.id.frgmtContainer, fragment)
             addToBackStack(CarouselFragment().tag)
             commit()

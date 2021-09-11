@@ -12,15 +12,15 @@ import android.widget.Toast
 
 class DetailImageFragment : Fragment(R.layout.fragment_detail_image) {
 
-    lateinit var picture: Picture
+    lateinit var img: Picture
     lateinit var imagen: ImageView
     lateinit var txtInfo: TextView
     lateinit var favourite: ImageView
     lateinit var sound: ImageView
 
-    override fun onResume() {
-        super.onResume()
-        picture = requireArguments().getParcelable<Picture>("picture")!!
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        img = requireArguments().getParcelable("picture")!!
 
         initViews()
         events()
@@ -30,7 +30,11 @@ class DetailImageFragment : Fragment(R.layout.fragment_detail_image) {
         imagen.setOnClickListener {
             val act = activity
             if ( act is MainActivity )
-                act.changeFragment(ImageViewFragment(), picture)
+                act.changeFragment(ImageViewFragment().apply {
+                    arguments = Bundle().apply {
+                        putParcelable("picture", img)
+                    }
+                })
             else
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG)
         }
@@ -42,7 +46,8 @@ class DetailImageFragment : Fragment(R.layout.fragment_detail_image) {
         favourite = requireView().findViewById(R.id.imgLike)
         sound = requireView().findViewById(R.id.imgMusicLike)
 
-        imagen.setImageResource(picture.sourceImage)
+        imagen.setImageResource(img.sourceImage)
+        txtInfo.text = img.description
     }
 
 }
