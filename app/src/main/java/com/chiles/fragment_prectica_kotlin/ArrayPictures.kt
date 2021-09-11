@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-class arrayPictures(
+class ArrayPictures(
     var arrayPictures: Array<Picture> = arrayOf(
         Picture(R.drawable.back, R.drawable.back, "Back")
     )

@@ -22,7 +22,7 @@
         android:layout_height="40dp"
         android:src="@drawable/next"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnInfo"
+        app:layout_constraintBottom_toTopOf="@+id/btnMusic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgViewCarousel"
         />
@@ -33,7 +33,7 @@
         android:layout_height="40dp"
         android:src="@drawable/back"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnInfo"
+        app:layout_constraintBottom_toTopOf="@id/btnMusic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imgViewCarousel"
         />
@@ -41,9 +41,8 @@
     <ImageView
         android:id="@+id/btnMusic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/music_on"
-        android:visibility="gone"
+        android:layout_height="50dp"
+        android:src="@drawable/music_off"
         app:layout_constraintTop_toBottomOf="@+id/imgViewCarousel"
         app:layout_constraintBottom_toTopOf="@+id/btnInfo"
         app:layout_constraintStart_toStartOf="parent"
