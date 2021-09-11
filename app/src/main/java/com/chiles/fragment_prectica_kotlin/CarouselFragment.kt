@@ -102,7 +102,7 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
             imgSound.setImageResource(R.drawable.music_on)
     }
 
-    fun playSound(sound: Int) = MediaPlayer.create(context, sound)
+    fun playSound(sound: Int) = MediaPlayer.create(context, sound).start()
 
     fun changePicture() {
         picture = arrayPictures[index]

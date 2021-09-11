@@ -99,6 +99,6 @@ class DetailImageFragment : Fragment(R.layout.fragment_detail_image) {
             sound.setImageResource(R.drawable.music_off)
     }
 
-    fun playSound(sound: Int) = MediaPlayer.create(context, sound)
+    fun playSound(sound: Int) = MediaPlayer.create(context, sound).start()
 
 }
