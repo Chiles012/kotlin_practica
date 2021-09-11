@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
 
     fun changeFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
+            setCustomAnimations(
+                R.anim.slide_inrigth,
+                R.anim.slide_outleft,
+                R.anim.slide_inleft,
+                R.anim.slide_outrigth
+            )
             replace(R.id.frgmtContainer, fragment)
             addToBackStack(CarouselFragment().tag)
             commit()
