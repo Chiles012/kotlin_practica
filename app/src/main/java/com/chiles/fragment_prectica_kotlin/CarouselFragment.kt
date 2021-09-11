@@ -1,5 +1,6 @@
 package com.chiles.fragment_prectica_kotlin
 
+import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 
 class CarouselFragment : Fragment(R.layout.fragment_carousel) {
 
@@ -27,6 +29,33 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
         picture = arrayPictures[index]
 
         initViews()
+        events()
+    }
+
+    private fun events() {
+        btnBack.setOnClickListener {
+            if ( index == 0 )
+                index = arrayPictures.size-1
+            else
+                index--
+            changePicture()
+        }
+
+        btnContinue.setOnClickListener {
+            if ( index == (arrayPictures.size-1) )
+                index = 0
+            else
+                index++
+            changePicture()
+        }
+
+        btnInfo.setOnClickListener {
+            val act = activity
+            if ( act is MainActivity )
+                act.changeFragment(DetailImageFragment(), picture)
+            else
+                Toast.makeText(context, "Error en abrir otro elemento", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun initViews() {
@@ -37,6 +66,11 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
 
         imgCarousel.setImageResource(picture.sourceImage)
 
+    }
+
+    fun changePicture() {
+        picture = arrayPictures[index]
+        imgCarousel.setImageResource(picture.sourceImage)
     }
 
     override fun onResume() {

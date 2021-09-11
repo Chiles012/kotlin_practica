@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,5 +19,16 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
 
+    }
+
+    fun changeFragment(fragment: Fragment, picture: Picture) {
+        supportFragmentManager.beginTransaction().apply {
+            Bundle().apply {
+                putParcelable("picture", picture)
+            }
+            replace(R.id.frgmtContainer, fragment)
+            addToBackStack(CarouselFragment().tag)
+            commit()
+        }
     }
 }
