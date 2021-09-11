@@ -12,8 +12,8 @@ class ImageViewFragment : Fragment(R.layout.fragment_image_view) {
     lateinit var img2: Picture
     lateinit var imageView: ImageView
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         img2 = requireArguments().getParcelable("picture")!!
 
         initViews()

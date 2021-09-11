@@ -8,10 +8,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class ArrayPictures(
     var arrayPictures: Array<Picture> = arrayOf(
-        Picture(R.drawable.ic_codigo, R.raw.herewego, "Codigo de programacion"),
-        Picture(R.drawable.ic_objetivo, R.raw.mammamia, "Codigo en objetivo"),
-        Picture(R.drawable.ic_programacion, R.raw.mario_bros, "Code"),
-        Picture(R.drawable.idioma, R.raw.supermario, "idiamas en el planeta"),
+        Picture(R.drawable.ic_codigo, R.raw.here_we_go, "Codigo de programacion"),
+        Picture(R.drawable.ic_objetivo, R.raw.mamma_mia, "Codigo en objetivo"),
+        Picture(R.drawable.ic_programacion, R.raw.super_mario, "Code"),
+        Picture(R.drawable.idioma, R.raw.game_over, "idiamas en el planeta"),
         Picture(R.drawable.lenguaje, R.raw.tuberia, "lenguaje de programacion"),
         Picture(R.drawable.npl, R.raw.vida, "Cerebro"),
     )

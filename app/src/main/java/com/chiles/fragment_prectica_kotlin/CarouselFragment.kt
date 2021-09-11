@@ -14,6 +14,7 @@ import android.widget.Toast
 
 class CarouselFragment : Fragment(R.layout.fragment_carousel) {
 
+    lateinit var classPictures: ArrayPictures
     lateinit var arrayPictures: Array<Picture>
     lateinit var picture: Picture
     lateinit var btnContinue: ImageView
@@ -24,10 +25,11 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
 
     var index = 0
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
 
-        arrayPictures = getImages().arrayPictures
+        classPictures = getImages()
+        arrayPictures = classPictures.arrayPictures
         picture = arrayPictures[index]
 
         initViews()
@@ -68,10 +70,12 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
 
         btnInfo.setOnClickListener {
             val act = activity
+            println(index)
             if ( act is MainActivity )
                 act.changeFragment(DetailImageFragment().apply {
                     arguments = Bundle().apply {
-                        putParcelable("picture", picture)
+                        putParcelable("arrayPicture", classPictures)
+                        putInt("index", index)
                     }
                 })
             else
@@ -105,6 +109,8 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
         imgCarousel.setImageResource(picture.sourceImage)
         if ( picture.favouriteSound )
             imgSound.setImageResource(R.drawable.music_on)
+        else
+            imgSound.setImageResource(R.drawable.music_off)
     }
 
 }
