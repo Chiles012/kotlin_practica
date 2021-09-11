@@ -2,6 +2,7 @@ package com.chiles.fragment_prectica_kotlin
 
 import android.content.Intent
 import android.media.Image
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
     lateinit var btnBack: ImageView
     lateinit var btnInfo: Button
     lateinit var imgCarousel: ImageView
+    lateinit var imgSound: ImageView
 
     var index = 0
 
@@ -60,6 +62,13 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
             else
                 Toast.makeText(context, "Error en abrir otro elemento", Toast.LENGTH_LONG).show()
         }
+
+        imgSound.setOnClickListener {
+            if ( picture.favouriteSound )
+                playSound(picture.sourceSound)
+            else
+                Toast.makeText(context, "No se guarde el audio", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun initViews() {
@@ -67,14 +76,20 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
         btnBack = requireView().findViewById(R.id.btnPrevious)
         btnInfo = requireView().findViewById(R.id.btnInfo)
         imgCarousel = requireView().findViewById(R.id.imgViewCarousel)
+        imgSound = requireView().findViewById(R.id.btnMusic)
 
         imgCarousel.setImageResource(picture.sourceImage)
-
+        if ( picture.favouriteSound )
+            imgSound.setImageResource(R.drawable.music_on)
     }
+
+    fun playSound(sound: Int) = MediaPlayer.create(context, sound)
 
     fun changePicture() {
         picture = arrayPictures[index]
         imgCarousel.setImageResource(picture.sourceImage)
+        if ( picture.favouriteSound )
+            imgSound.setImageResource(R.drawable.music_on)
     }
 
 }
