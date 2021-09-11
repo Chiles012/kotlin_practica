@@ -27,12 +27,27 @@ class CarouselFragment : Fragment(R.layout.fragment_carousel) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        arrayPictures = ArrayPictures().arrayPictures
+        arrayPictures = getImages().arrayPictures
         picture = arrayPictures[index]
 
         initViews()
         events()
     }
+
+    fun getImages() : ArrayPictures {
+        val act = activity
+        if ( act is MainActivity ) {
+            return act.preferences.getString(act.docPrference, null)?.let {
+                return@let try {
+                    act.moshi.adapter(ArrayPictures::class.java).fromJson(it)
+                } catch (ex: Exception) {
+                    ArrayPictures()
+                }
+            } ?: ArrayPictures()
+        } else
+            return ArrayPictures()
+    }
+
 
     private fun events() {
         btnBack.setOnClickListener {

@@ -1,12 +1,20 @@
 package com.chiles.fragment_prectica_kotlin
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.squareup.moshi.Moshi
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var preferences: SharedPreferences
+    var moshi = Moshi.Builder().build()
+    var PREF = "MY_PREFERENCES"
+    var docPrference = "ARRAY_PREFERENCE"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +26,8 @@ class MainActivity : AppCompatActivity() {
             addToBackStack(CarouselFragment().tag)
             commit()
         }
+
+        preferences = getSharedPreferences(PREF, Context.MODE_PRIVATE)
 
     }
 
